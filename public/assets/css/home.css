@@ -4,6 +4,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   padding: 0;
   height: 100%;
+  background-image: url("../images/Image_Server.jpg");
+  border-image: fill 0 linear-gradient(#0003, #000); /*com ou sem ver com outras pessoas*/
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
   /* Define a altura do elemento pai como 100% da viewport */
 }
 
