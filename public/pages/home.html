@@ -13,12 +13,12 @@
   <header>
     <div class="topnav" id="myTopnav">
       <h2>DevMatrix Innovations</h2>
-     <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
-  <a href="#"><i class="fa fa-fw fa-search"></i> Search</a> 
-  <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a> 
-  <a href="#"><i class="fa fa-fw fa-user"></i> Login</a>
-      <a href="javascript:void(0);" class="icon" onclick="responsivemenu()">
-        <div class="container" onclick="myFunction(this)">
+      <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+      <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+      <a href="#"><i class="fa fa-fw fa-user"></i> Login</a>
+      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <div class="container">
           <div class="bar1"></div>
           <div class="bar2"></div>
           <div class="bar3"></div>
@@ -33,18 +33,10 @@
   </div>
 
   <script>
-    function responsivemenu() {
+    function toggleMenu() {
       var x = document.getElementById("myTopnav");
-      if (x.className === "topnav") {
-        x.className += " responsive";
-      } else {
-        x.className = "topnav";
-      }
+      x.classList.toggle("responsive");
     }
-
-    function myFunction(xis) {
-  xis.classList.toggle("change");
-}
   </script>
 </body>
 
