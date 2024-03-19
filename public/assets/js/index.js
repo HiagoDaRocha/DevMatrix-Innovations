@@ -7,7 +7,7 @@ window.startAnimation = function () {
     // ...
 
     // Estilos para o corpo do documento
-    document.body.style.backgroundColor = "#000000";
+    document.body.style.background = "#000000";
     document.body.style.overflow = "hidden";
 
     // Estilos para os títulos de segundo nível
@@ -75,8 +75,9 @@ window.startAnimation = function () {
     // ...
 
     // Resetar estilos para o corpo do documento
-    document.body.style.backgroundColor = "";
+    document.body.style.background = "";
     document.body.style.overflow = "";
+    document.body.style.borderImage = "fill 0 linear-gradient(#0003, #000);"
 
     // Resetar estilos para os títulos de segundo nível
     var h2Elements = document.querySelectorAll("h2");
@@ -172,6 +173,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-function go() {
+function register() {
   window.location.href = "pages/register.html";
 }
+
+
