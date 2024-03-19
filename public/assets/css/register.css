@@ -99,7 +99,7 @@ textarea {
 }
 
 /* Estilos para os botões de envio */
-.register-box button {
+.register-box input[type="submit"] {
   background-color: #14448d;
   border: 1px solid transparent;
   /* Adiciona uma borda */
