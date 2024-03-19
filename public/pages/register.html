@@ -75,7 +75,7 @@
 
         <div class="register-box">
             <h2>Formulário de cadastro</h2>
-            <form method="">
+            <form method="post" action="">
                 <label for="name-complete">Nome completo:</label>
                 <input type="text" name="name-complete" id="name-complete" placeholder="Digite seu nome completo" maxlength="20" required>
                 
@@ -120,7 +120,7 @@
                 <p style="text-align: center;">Fale mais sobre você:</p>
                 <textarea name="description" id="description" placeholder="Escreva sobre você, linguagens que você já trabalhou e qual você se considera melhor" cols="30" rows="10" required></textarea>
 
-                <button type="button" id="register" onclick="go()">Cadastrar</button>
+                <input type="submit" id="register">Cadastrar</button>
 
 
             </form>
