@@ -15,31 +15,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql->bindValue(':usuario', $usuario);
     $sql->execute();
 
+    $login_sucesso = false;
+
     if ($sql->rowCount() === 1) {
         // Recupera os dados do usuário
-        $dados_usuario = $sql->fetch(PDO::FETCH_ASSOC);
-        
-        // Verifica se o login e a senha estão corretos
-        if (($dados_usuario['login'] === $usuario || $dados_usuario['email'] === $usuario) && password_verify($senha, $dados_usuario['senha'])) {
-            // (Login ou email) e senha corretos - Inicia a sessão do usuário
-            $_SESSION['usuario'] = $dados_usuario;
-            
-            // Redireciona apenas se o login for bem-sucedido
+        $usuario = $sql->fetch(PDO::FETCH_ASSOC);
+    
+        // Verifica se a senha está correta
+        if (password_verify($senha, $usuario['senha'])) {
+            // Senha correta - Inicia a sessão do usuário
+            $_SESSION['usuario'] = $usuario;
+            $login_sucesso = true;
+        }
+
+        if ($login_sucesso) {
+            // Login bem-sucedido - Redireciona para a página inicial
             header("Location: php_testes/index.php");
             exit;
-
         } else {
-            // Login ou senha incorretos - Define a mensagem de erro na sessão
-            $_SESSION['error_message'] = "Usuário ou senha incorretos!";
-            header("Location: ../index.php");
+             // Senha incorreta - Exibe uma mensagem de erro
+            header("Location: php_testes/teste.php?error=incorrect_password");
             exit;
-
         }
-        
-    } else {
-        // Usuário não encontrado - Define a mensagem de erro na sessão
-        $_SESSION['error_message'] = "Usuário não encontrado!";
-        header("Location: ../index.php");
+    }else {
+        // Usuário não encontrado - Exibe uma mensagem de erro
+        header("Location: php_testes/teste.php?error=user_not_found");
         exit;
     }
     
