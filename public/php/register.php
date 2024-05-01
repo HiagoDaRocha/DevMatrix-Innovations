@@ -2,6 +2,7 @@
 
 //conexão com o banco de dados 
 require 'config.php';  
+include './php_testes/index.html';
 
 session_start(); 
 

@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Dinâmica</title>
+</head>
+<body>
 <?php
 session_start(); // Inicia a sessão
 
@@ -7,3 +15,5 @@ if (isset($_SESSION['usuario'])) {
     echo "Bem-vindo, " . $_SESSION['usuario']['nome']; // Supondo que 'nome' seja uma chave no array de dados do usuário
 } 
 ?>
+</body>
+</html>
