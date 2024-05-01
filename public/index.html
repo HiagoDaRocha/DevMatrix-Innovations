@@ -22,15 +22,15 @@
 
     <div class="login-box">
       <h2>Login</h2>
-      <form method="get" action="pages/home.html">
-        <input type="text" placeholder="Usuário" maxlength="20" required />
+      <form method="post" action="../public/php/index.php">
+        <input type="text" name="usuario" placeholder="Usuário"  required />
         <div class="password-container">
-          <input type="password" id="password" placeholder="Senha" maxlength="30" required />
+          <input type="password" name="senha" id="password" placeholder="Senha" required />
           <i class="bi bi-eye-slash" id="togglePassword"></i>
         </div>
 
         <button type="submit" class="login-button">Entrar</button>
-        <button type="button" class="register-button" onclick="register()">Cadastrar</button>
+        <button type="button" class="register-button">Cadastrar</button>
 
 
         <a href="">Esqueceu a senha?</a>
