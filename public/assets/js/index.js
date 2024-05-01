@@ -13,8 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+/*
 function register() {
   window.location.href = "pages/register.html";
 }
+*/
 
 
