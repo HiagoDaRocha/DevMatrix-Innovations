@@ -47,18 +47,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql->execute();
 
             // Define a variável de sessão com os dados do novo usuário
-$_SESSION['usuario'] = [
-    'nome' => $nome,
+            $_SESSION['usuario'] = ['nome' => $nome,];
 
-];
-
-              // Move o arquivo para o diretório desejado
-              move_uploaded_file($file['tmp_name'], 'C:/xampp/htdocs/tcc_tecnico/uploads/' . $file_name);
+            // Move o arquivo para o diretório desejado
+            move_uploaded_file($file['tmp_name'], 'C:/xampp/htdocs/tcc_tecnico/uploads/' . $file_name);
 
 
             // Redireciona para a página inicial após o cadastro bem-sucedido
             header("Location: php_testes/index.php");
             exit;
+            
         } else {
             // Redireciona para a página de adicionar em caso de e-mail já em uso
             header("Location: php_testes/teste.php?error=email_exists");
