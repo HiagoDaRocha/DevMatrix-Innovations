@@ -1,6 +1,6 @@
 <?php 
 
-$db_name = 'test'; 
+$db_name = 'tccTecnico'; 
 $db_host = 'localhost'; 
 $db_user = 'root'; 
 $db_pass = ''; 
