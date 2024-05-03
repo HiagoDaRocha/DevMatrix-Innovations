@@ -1,9 +1,9 @@
-<?php 
+<?php
 
 //conexão com o banco de dados 
-require 'config.php';  
+require 'config.php';
 
-session_start(); 
+session_start();
 
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -27,27 +27,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($nome && $email && $senha && $login && $telefone && $cpf && $cargo && $descricao && $birthday && $file_name) {
 
         // Verifica se o e-mail já está em uso
-        $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-        $sql->bindValue(':email', $email);
+        $sql = $pdo->prepare("SELECT * FROM usuarios WHERE email = ?");
+        $sql->bindValue(1, $email);
         $sql->execute();
+
 
         if ($sql->rowCount() === 0) {
             // Insere os dados no banco de dados
-            $sql = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, login, telefone, cpf, cargo, descricao, birthday, curriculo) VALUES (:nome, :email, :senha, :login, :telefone, :cpf, :cargo, :descricao, :birthday, :curriculo)");
-            $sql->bindValue(':nome', $nome);
-            $sql->bindValue(':email', $email);
-            $sql->bindValue(':senha', $senha);
-            $sql->bindValue(':login', $login);
-            $sql->bindValue(':telefone', $telefone);
-            $sql->bindValue(':cpf', $cpf);
-            $sql->bindValue(':cargo', $cargo);
-            $sql->bindValue(':descricao', $descricao);
-            $sql->bindValue(':birthday', $birthday);
-            $sql->bindValue(':curriculo', $file_name); // Armazena apenas o nome do arquivo no banco de dados
+            $sql = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, login, telefone, cpf, cargo, descricao, birthday, curriculo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            $sql->bindValue(1, $nome);
+            $sql->bindValue(2, $email);
+            $sql->bindValue(3, $senha);
+            $sql->bindValue(4, $login);
+            $sql->bindValue(5, $telefone);
+            $sql->bindValue(6, $cpf);
+            $sql->bindValue(7, $cargo);
+            $sql->bindValue(8, $descricao);
+            $sql->bindValue(9, $birthday);
+            $sql->bindValue(10, $file_name); // Armazena apenas o nome do arquivo no banco de dados
             $sql->execute();
 
             // Define a variável de sessão com os dados do novo usuário
-            $_SESSION['usuario'] = ['nome' => $nome,];
+            $_SESSION['usuario'] = ['nome' => $nome, 'login' => $login];
 
             // Move o arquivo para o diretório desejado
             move_uploaded_file($file['tmp_name'], 'C:/xampp/htdocs/tcc_tecnico/uploads/' . $file_name);
@@ -56,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Redireciona para a página inicial após o cadastro bem-sucedido
             header("Location: php_testes/index.php");
             exit;
-            
         } else {
             // Redireciona para a página de adicionar em caso de e-mail já em uso
             header("Location: php_testes/teste.php?error=email_exists");
@@ -64,6 +65,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
-
-?>
