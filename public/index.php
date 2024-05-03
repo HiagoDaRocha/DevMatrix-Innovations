@@ -53,7 +53,7 @@
         </div>
 
         <button type="submit" class="login-button">Entrar</button>
-        <button type="button" class="register-button">Cadastrar</button>
+        <button type="button" class="register-button" onclick="register()">Cadastrar</button>
 
 
         <a href="">Esqueceu a senha?</a>
