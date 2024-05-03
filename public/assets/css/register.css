@@ -127,7 +127,7 @@ textarea {
 .register-box input[type="number"],
 .register-box input[type="tel"],
 .register-box input[type="email"] {
-  width: 40%;
+  width: 43.5%;
   /* Define a largura como 90% */
   padding: 10px;
   /* Adiciona preenchimento interno */
@@ -138,6 +138,28 @@ textarea {
   /*background-color: #000000;*/
   margin-bottom: 5%;
   height: 1vh;
+}
+
+/* Estilos para o contêiner do campo de senha */
+.password-container {
+  position: relative;
+  /* Define a posição como relativa */
+}
+
+
+
+/* Estilos para o ícone do olho */
+.password-container .bi {
+  position: absolute;
+  /* Define a posição como absoluta */
+  top: 39%;
+  /* Alinha verticalmente ao centro */
+  left: 84%;
+  /* Define a posição à direita */
+  transform: translateY(-80%);
+  /* Ajusta a posição verticalmente */
+  cursor: pointer;
+  /* Define o cursor como apontador */
 }
 
 select {
