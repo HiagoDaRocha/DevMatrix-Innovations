@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
             // Redireciona para a página inicial após o cadastro bem-sucedido
-            header("Location: php_testes/index.php");
+            header("Location: ../pages/home.php");
             exit;
         } else {
             // Redireciona para a página de adicionar em caso de e-mail já em uso
