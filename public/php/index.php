@@ -27,23 +27,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['usuario'] = $dados_usuario;
 
             // Redireciona apenas se o login for bem-sucedido
-            header("Location: php_testes/index.php");
+            header("Location: ../pages/home.php");
             exit;
         } else {
             // Senha incorreta - Define a mensagem de erro na sessão
-            $_SESSION['error_message'] = "Senha incorreta!";
+            $_SESSION['error_message'] = "Usuário e/ou senha estão incorretos!";
             header("Location: ../index.php");
             exit;
         }
     } else {
         // Usuário não encontrado - Define a mensagem de erro na sessão
-        $_SESSION['error_message'] = "Usuário não encontrado!";
+        $_SESSION['error_message'] = "Usuário e/ou senha estão incorretos!";
         header("Location: ../index.php");
         exit;
     }
 } else {
 
     // Caso o método não for post irá permanecer na mesma página
-    header("Location: ../index.html");
+    header("Location: ../index.php");
     exit;
 }
