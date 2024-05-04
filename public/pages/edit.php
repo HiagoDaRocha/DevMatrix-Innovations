@@ -1,6 +1,13 @@
 <?php
+
+//Verifica se a sessão está vazia
+if (empty($_SESSION)) {
+    header("Location:../index.php");
+    exit;
+}
+
 require '../php/config.php';
-$id = filter_input(INPUT_GET,'id');
+$id = filter_input(INPUT_GET, 'id');
 $sql = "SELECT * FROM usuarios WHERE id = $id";
 $sql = $pdo->query($sql);
 $info = $sql->fetch();
@@ -30,6 +37,11 @@ $info = $sql->fetch();
         </label><br /><br />
         <input type="submit" value="Editar" />
     </form>
+
+    <?php
+
+    echo "<a href='../php/logout.php'>Sair da conta</a>";
+    ?>
 
 </body>
 
