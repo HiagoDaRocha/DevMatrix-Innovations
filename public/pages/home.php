@@ -2,7 +2,7 @@
 session_start(); // Inicia a sessão
 
 //Verifica se a sessão está vazia
-if (empty($_SESSION)) {
+if (empty($_SESSION['usuario'])) {
   header("Location:../index.php");
   exit;
 }
@@ -22,6 +22,56 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
 } else {
   $administrador = false;
 }
+
+// Consulta o banco de dados para obter as caixas
+$stmt = $pdo->query("SELECT * FROM box");
+$caixas = $stmt->fetchAll();
+
+// Processamento dos dados do formulário
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
+  $box_id = $_POST['box_id'];
+  $action = $_POST['action'];
+
+  if ($action == 'aceitar') {
+    // Consulta o banco de dados para obter os dados da caixa a ser aceita
+    $stmt = $pdo->prepare("SELECT * FROM box WHERE id = ?");
+    $stmt->execute([$box_id]);
+    $caixa = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // Verifica se a consulta foi bem-sucedida e se $caixa não está vazio
+    if ($caixa && !empty($caixa)) {
+      // Após aceitar a caixa, remova-a da tabela 'box'
+      $stmt = $pdo->prepare("DELETE FROM box WHERE id = ?");
+      $stmt->execute([$box_id]);
+
+      // Insere os dados da caixa aceita na tabela 'trabalho' do usuário correspondente
+      $stmt = $pdo->prepare("INSERT INTO trabalho (user_id, titulo, texto) VALUES (?, ?, ?)");
+      $stmt->execute([$_SESSION['usuario']['id'], $caixa['titulo'], $caixa['texto']]);
+    }
+
+       // Armazene temporariamente o estado da caixa aceita na sessão
+  $_SESSION['caixa_aceita'] = true;
+
+  // Redirecione para a página atual
+  header("Location: home.php");
+  exit(); // Certifique-se de sair após o redirecionamento
+ 
+ }elseif ($action == 'rejeitar') {
+    // Verifica se a caixa pertence ao usuário atual antes de excluí-la
+    $stmt = $pdo->prepare("SELECT * FROM box WHERE id = ? AND user_id = ?");
+    $stmt->execute([$box_id, $_SESSION['usuario']['id']]);
+    $caixa = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($caixa) {
+      // Exclui a caixa apenas se pertencer ao usuário atual
+      $stmt = $pdo->prepare("DELETE FROM box WHERE id = ?");
+      $stmt->execute([$box_id]);
+    }
+  
+}
+}
+
+
 
 ?>
 
@@ -77,37 +127,37 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
   </div>
 
   <!-- Aqui é onde a box será exibida -->
-  <div id="box-container">
-    <?php
-
-    // Verifica se o formulário foi enviado
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
-      // Verifica se foi enviado um título e um texto
-      if (!empty($_POST['titulo']) && !empty($_POST['texto'])) {
-        $titulo = $_POST['titulo'];
-        $texto = $_POST['texto'];
-
-        // Exibe a box com o título e o texto
-        echo "<div class='box'>";
-        echo "<h3>Título: $titulo</h3>";
-        echo "<p>Texto: $texto</p>";
-
-        // Adicionei botões para aceitar ou rejeitar a entrega
-        echo "<form id='confirmForm' action='home.php' method='post'>";
-        echo "<button type='submit' class='btn-submit'>Aceitar</button>";
-        echo "<button type='button' onclick='confirmExclusao()' class='btn-submit'>Rejeitar</button>";
-        echo "</form>";
-
-        echo "</div>";
-      } else {
-        echo "Por favor, preencha o título e o texto.";
-      }
+ <!-- Aqui é onde a box será exibida -->
+<div id="box-container">
+  <?php
+  // Verifica se há caixas para exibir
+  if ($caixas) {
+    foreach ($caixas as $caixa) {
+      echo "<div class='box'>";
+      echo "<h3>Título: {$caixa['titulo']}</h3>";
+      echo "<p>Texto: {$caixa['texto']}</p>";
+      // Adicionei botões para aceitar ou rejeitar a entrega
+      echo "<form action='home.php' method='post'>";
+      echo "<input type='hidden' name='box_id' value='{$caixa['id']}'>";
+      echo "<button type='submit' name='action' value='aceitar' class='btn-submit'>Aceitar</button>";
+      echo "<button type='submit' name='action' value='rejeitar' class='btn-submit'>Rejeitar</button>";
+      echo "</form>";
+      echo "</div>";
     }
+  }
+  ?>
+</div>
 
-    ?>
+<?php
+// Verifique se a caixa foi aceita e exiba uma mensagem se necessário
+if (isset($_SESSION['caixa_aceita']) && $_SESSION['caixa_aceita'] === true) {
+  // Exiba o alerta após aceitar a caixa
+  echo "<script>Swal.fire({ title: 'Good job!', text: 'You clicked the button!', icon: 'success' });</script>";
 
-  </div>
-
+  // Limpe a variável de sessão após exibir a mensagem
+  unset($_SESSION['caixa_aceita']);
+}
+?>
 </body>
 
 </html>
