@@ -49,14 +49,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
       $stmt->execute([$_SESSION['usuario']['id'], $caixa['titulo'], $caixa['texto']]);
     }
 
-       // Armazene temporariamente o estado da caixa aceita na sessão
-  $_SESSION['caixa_aceita'] = true;
+    // Armazene temporariamente o estado da caixa aceita na sessão
+    $_SESSION['caixa_aceita'] = true;
 
-  // Redirecione para a página atual
-  header("Location: home.php");
-  exit(); // Certifique-se de sair após o redirecionamento
- 
- }elseif ($action == 'rejeitar') {
+    // Redirecione para a página atual
+    header("Location: home.php");
+    exit(); // Certifique-se de sair após o redirecionamento
+
+  } elseif ($action == 'rejeitar') {
     // Verifica se a caixa pertence ao usuário atual antes de excluí-la
     $stmt = $pdo->prepare("SELECT * FROM box WHERE id = ? AND user_id = ?");
     $stmt->execute([$box_id, $_SESSION['usuario']['id']]);
@@ -67,8 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
       $stmt = $pdo->prepare("DELETE FROM box WHERE id = ?");
       $stmt->execute([$box_id]);
     }
-  
-}
+  }
 }
 
 
@@ -83,14 +82,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
   <link rel="stylesheet" href="../assets/css/home.css" />
-  <style>
-    .box {
-      border: 2px solid #000;
-      padding: 10px;
-      margin-bottom: 20px;
-      background-color: white;
-    }
-  </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -107,6 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         <a href="usuarios.php"><i class="fa fa-group"></i> Usuários</a>
         <a href="servico.php"><i class="fa fa-briefcase"></i> Serviços</a>
       <?php endif; ?>
+      <a href="trabalho.php"><i class="fa fa-archive"></i> Chamados</a>
       <a href="#"><i class="fa fa-user-circle-o"></i> Login</a>
       <?php
       echo "<a href='../php/logout.php'>Sair da conta</a>";
@@ -121,43 +113,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     </div>
   </header>
 
-  <div style="padding-left: 16px">
-    <h3>Responsive Topnav Example</h3>
-    <p>Resize the browser window to see how it works.</p>
-  </div>
+  <br><br>
 
   <!-- Aqui é onde a box será exibida -->
- <!-- Aqui é onde a box será exibida -->
-<div id="box-container">
-  <?php
-  // Verifica se há caixas para exibir
-  if ($caixas) {
-    foreach ($caixas as $caixa) {
-      echo "<div class='box'>";
-      echo "<h3>Título: {$caixa['titulo']}</h3>";
-      echo "<p>Texto: {$caixa['texto']}</p>";
-      // Adicionei botões para aceitar ou rejeitar a entrega
-      echo "<form action='home.php' method='post'>";
-      echo "<input type='hidden' name='box_id' value='{$caixa['id']}'>";
-      echo "<button type='submit' name='action' value='aceitar' class='btn-submit'>Aceitar</button>";
-      echo "<button type='submit' name='action' value='rejeitar' class='btn-submit'>Rejeitar</button>";
-      echo "</form>";
-      echo "</div>";
+  <div id="box-container">
+    <?php
+    // Verifica se há caixas para exibir
+    if ($caixas) {
+      foreach ($caixas as $caixa) {
+        echo "<div class='box'>";
+        echo "<h3 id='titulo_box'>Título: {$caixa['titulo']}</h3>";
+        echo "<p>Texto: {$caixa['texto']}</p>";
+        // Adicionei botões para aceitar ou rejeitar a entrega
+        echo "<form action='home.php' method='post'>";
+        echo "<input type='hidden' name='box_id' value='{$caixa['id']}'>";
+        echo "<div class='buttons'>";
+        echo "<button type='submit' name='action' value='aceitar' id='accept'>";
+        echo "  <div class='svg-wrapper-1'>";
+        echo "    <div class='svg-wrapper'>";
+        echo "      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>";
+        echo "        <path fill='none' d='M0 0h24v24H0z'></path>";
+        echo "        <path fill='currentColor' d='M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z'></path>";
+        echo "      </svg>";
+        echo "    </div>";
+        echo "  </div>";
+        echo "  <span>Aceitar</span>";
+        echo "</button>";
+
+        echo "<button type='submit' name='action' value='rejeitar' id='reject'>";
+        echo "  <span class='text'>Rejeitar</span>";
+        echo "  <span class='icon'>";
+        echo "    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>";
+        echo "      <path d='M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z'></path>";
+        echo "    </svg>";
+        echo "  </span>";
+        echo "</button>";
+        echo"</div>";
+        echo "</form>";
+        echo "</div>";
+        echo "<br>";
+      }
     }
+    ?>
+  </div>
+
+  <?php
+  // Verifique se a caixa foi aceita e exiba uma mensagem se necessário
+  if (isset($_SESSION['caixa_aceita']) && $_SESSION['caixa_aceita'] === true) {
+    // Exiba o alerta após aceitar a caixa
+    echo "<script>Swal.fire({ title: 'Good job!', text: 'You clicked the button!', icon: 'success' });</script>";
+
+    // Limpe a variável de sessão após exibir a mensagem
+    unset($_SESSION['caixa_aceita']);
   }
   ?>
-</div>
-
-<?php
-// Verifique se a caixa foi aceita e exiba uma mensagem se necessário
-if (isset($_SESSION['caixa_aceita']) && $_SESSION['caixa_aceita'] === true) {
-  // Exiba o alerta após aceitar a caixa
-  echo "<script>Swal.fire({ title: 'Good job!', text: 'You clicked the button!', icon: 'success' });</script>";
-
-  // Limpe a variável de sessão após exibir a mensagem
-  unset($_SESSION['caixa_aceita']);
-}
-?>
 </body>
 
 </html>
