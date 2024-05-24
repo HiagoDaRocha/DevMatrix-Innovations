@@ -6,18 +6,18 @@ Este é o repositório do projeto TCC Técnico. Aqui estão os passos para come�
 
 Primeiro, você precisa clonar o repositório do GitHub. Você pode fazer isso usando o seguinte comando no terminal:
 
-\`\`\`bash
+
 git clone https://github.com/HiagoDaRocha/tcc_tecnico.git
-\`\`\`
+
 
 
 ## Passo 2: Navegar até o diretório 'public'
 
 Agora, navegue até o diretório 'public' usando o comando:
 
-\`\`\`bash
+
 cd public
-\`\`\`
+
 
 ## Passo 3: Abrir o site
 
