@@ -32,23 +32,6 @@ h2{
 
   color: #ffffff;
 }
-/* Estilos para os links */
-a {
-  /* Define a cor do texto como verde */
-  display: flex;
-  /* Usa um layout flexível */
-  justify-content: center;
-  /* Centraliza horizontalmente */
-  margin: 20px;
-  /* Adiciona margem em torno do link */
-  color: #2caadb;
-}
-
-/* Estilos para os links quando passa o mouse por cima */
-a:hover {
-  color: #3465a5;
-  /* Altera a cor do texto quando o mouse passa por cima */
-}
 
 /* Estilos para o contêiner do formulário de login */
 .login-box {
@@ -152,6 +135,26 @@ a:hover {
   /* Ajusta a posição verticalmente */
   cursor: pointer;
   /* Define o cursor como apontador */
+}
+
+.link-text {
+ /* Define a cor do texto como verde */
+ display: flex;
+ /* Usa um layout flexível */
+ justify-content: center;
+ /* Centraliza horizontalmente */
+ margin: 20px;
+ /* Adiciona margem em torno do link */
+ color: #2caadb;
+ text-decoration: underline;
+ cursor: pointer;
+   
+}
+
+/* Estilos para os links quando passa o mouse por cima */
+.link-text:hover {
+  color: #3465a5;
+  /* Altera a cor do texto quando o mouse passa por cima */
 }
 
 /* Media query para ajustar o layout em telas menores */
