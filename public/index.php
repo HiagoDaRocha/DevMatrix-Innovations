@@ -12,7 +12,7 @@
 
 <body>
 
-  <script src="assets/js/index.js"></script>
+  <script src="assets/js/index.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 
   <?php
@@ -32,6 +32,22 @@
     // Remove a mensagem de erro da sessão para não exibi-la novamente
     unset($_SESSION['error_message']);
   }
+
+    // Verifica se há uma mensagem de bem-sucedida na sessão
+    if (isset($_SESSION['success_message'])) {
+      $success_message = $_SESSION['success_message'];
+      // Exibe o alerta do SweetAlert com a mensagem de bem-sucedida
+      echo "<script>
+              Swal.fire({
+                icon: 'success',
+                title: 'Senha trocada',
+                text: '$success_message',
+              });
+            </script>";
+      // Remove a mensagem de bem-sucedida da sessão para não exibi-la novamente
+      unset($_SESSION['success_message']);
+    }
+
   ?>
 
   <header>
@@ -55,17 +71,10 @@
         <button type="submit" class="login-button">Entrar</button>
         <button type="button" class="register-button" onclick="register()">Cadastrar</button>
 
-
-        <a href="">Esqueceu a senha?</a>
+        <p id="forgotPasswordLink" class="link-text">Esqueceu a senha?</p>
       </form>
     </div>
   </main>
-
-  <footer></footer>
-
-
-
-
 
 </body>
 
