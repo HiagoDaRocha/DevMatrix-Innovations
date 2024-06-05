@@ -7,6 +7,7 @@
     <title>Cadastrar</title>
     <link rel="stylesheet" href="../assets/css/register.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 
@@ -21,7 +22,7 @@
 
     <div class="register-box">
         <h2>Formulário de cadastro</h2>
-        <form method="post" action="../php/register.php" enctype="multipart/form-data">
+        <form method="post" action="../php/register.php" enctype="multipart/form-data" id="form">
             <label for="name-complete">Nome completo:</label>
             <input type="text" name="name-complete" id="name-complete" placeholder="Digite seu nome completo" required>
 
@@ -29,10 +30,10 @@
             <input type="text" name="login" id="login" placeholder="Digite um login" required><br>
 
             <label for="telephone">Telefone:</label>
-            <input type="tel" name="telephone" id="telephone" placeholder="Digite seu telefone" required><br>
+            <input type="tel" name="telephone" id="telephone" maxlength="14" placeholder="Digite seu telefone" required><br>
 
             <label for="cpf">CPF:</label>
-            <input type="number" name="cpf" id="cpf" placeholder="Digite seu CPF" required><br>
+            <input type="text" name="cpf" id="cpf" maxlength="14" placeholder="Digite seu CPF" required><br>
 
             <div class="password-container">
                 <label for="password-register">Senha:</label>
@@ -49,19 +50,28 @@
             <label for="file">Curriculo ou <br>portifolio:</label>
             <input type="file" name="file" id="file" required><br><br>
 
-            <label for="option">Cargo:</label>
+            <label for="option">Domínio:</label>
             <select name="linguagem" required="required" id="option">
-                <option value="">Escolha uma linguagem ou serviço</option>
-                <option value="front">Front-end</option>
-                <option value="back">Back-end</option>
-                <option value="full">Full-stack</option>
-                <option value="csharp">C#</option>
+                <option value="frontend">Front-end</option>
+                <option value="backend">Back-end</option>
+                <option value="fullstack">Full-stack</option>
+                <option value="c">C</option>
+                <option value="c#">C#</option>
+                <option value="c++">C++</option>
+                <option value="python">Python</option>
                 <option value="php">PHP</option>
                 <option value="java">Java</option>
                 <option value="javascript">JavaScript</option>
-                <option value="cpp">C++</option>
                 <option value="html">HTML</option>
                 <option value="css">CSS</option>
+                <option value="ruby">Ruby</option>
+                <option value="python">Python</option>
+                <option value="go">Go</option>
+                <option value="node">Node.js</option>
+                <option value="react">React.js</option>
+                <option value="vue">Vue.js</option>
+                <option value="=typescript">TypeScript</option>
+                <option value="=angular">Angular</option>
                 <option value="th">Técnico de hardware</option>
                 <option value="ts">Técnico de software</option>
             </select>
