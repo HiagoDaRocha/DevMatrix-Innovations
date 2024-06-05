@@ -178,7 +178,7 @@ select {
 }
 
 /* Estilos para os botões de envio quando passa o mouse por cima */
-.register-box button:hover {
+.register-box #register:hover {
   transform: scale(1.3);
   /* Aumenta ligeiramente o tamanho quando passa o mouse por cima */
 }
@@ -201,11 +201,6 @@ select {
     white-space: pre-wrap;
   }
 
-  #dark-light {
-    right: 20px;
-    /* Ajusta ainda mais a posição do botão de alternância */
-    text-align: -webkit-center;
-  }
 }
 
 @media screen and (max-width: 500px) {
