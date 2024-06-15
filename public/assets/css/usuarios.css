@@ -1,0 +1,132 @@
+html,
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  height: 100%;
+  background-image: url("../images/fundo-de-papel-texturizado-preto.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  /* Define a altura do elemento pai como 100% da viewport */
+}
+
+/* Estilos para os títulos de primeiro nível */
+h2 {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  /* Move o h2 para a esquerda */
+  margin-right: auto;
+  /* Move o h2 para a direita */
+  color: #fff;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #003554;
+}
+
+.topnav a {
+  float: left;
+  display: flex;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  gap: 10px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  transition: 1s;
+  padding: 14px 23px;
+}
+
+.topnav a.active {
+  
+  background-color: #004d74;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.container {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 29px;
+  height: 3px;
+  background-color: #136f80;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+th {
+  background-color: #f2f2f2;
+  text-align-last: center;
+  place-content: center;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+
+  .topnav.responsive {
+    position: relative;
+  }
+
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .topnav.responsive .bar1 {
+    transform: translate(0, 9px) rotate(-45deg);
+  }
+
+  .topnav.responsive .bar2 {
+    opacity: 0;
+  }
+
+  .topnav.responsive .bar3 {
+    transform: translate(0, -9px) rotate(45deg);
+  }
+
+  .topnav a:hover {
+    padding: 1.2rem;
+  }
+}
