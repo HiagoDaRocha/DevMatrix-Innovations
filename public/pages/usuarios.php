@@ -8,7 +8,7 @@ if (empty($_SESSION)) {
 }
 
 // A sessão está definida, então você pode acessar os dados da sessão
-echo "Bem-vindo, " . $_SESSION['usuario']['nome']; // Supondo que 'nome' seja uma chave no array de dados do usuário
+//echo "Bem-vindo, " . $_SESSION['usuario']['nome']; // Supondo que 'nome' seja uma chave no array de dados do usuário
 
 // Conexão com o banco de dados
 require '../php/config.php'; // Inclusão com arquivo de configuração com a conexão com o banco de dados
@@ -35,27 +35,40 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/usuarios.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
 </head>
 
 <body>
+
+<script src="../assets/js/usuarios.js"></script>
+
+<header>
+    <div class="topnav" id="myTopnav"><br>
+      <h2>DevMatrix Innovations</h2><br>
+      <a href="home.php"><i class="fa fa-fw fa-home"></i> Home</a>
+      <?php if ($administrador) : ?>
+        <a class="active" href="usuarios.php"><i class="fa fa-group"></i> Usuários</a>
+        <a href="servico.php"><i class="fa fa-briefcase"></i> Serviços</a>
+      <?php endif; ?>
+      <a href="trabalho.php"><i class="fa fa-archive"></i> Chamados</a>
+      <a href="#"><i class="fa fa-user-circle-o"></i> Login</a>
+      <?php
+      echo "<a href='../php/logout.php'>Sair da conta</a>";
+      ?>
+      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <div class="container">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <br>
 
     <?php if ($administrador) : ?>
         <?php
@@ -65,17 +78,17 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
         $sql = "SELECT id, nome, email, telefone, permissoes FROM usuarios";
         $resultado = $pdo->query($sql);
         ?>
-
-        <table>
+<div class="table-responsive">
+        <table class="table table-dark table-borderless">
 
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
-                    <th>Nível de acesso</th>
-                    <th>Ações</th>
+                    <th class="border border-white">ID</th>
+                    <th class="border border-white">Nome</th>
+                    <th class="border border-white">Email</th>
+                    <th class="border border-white">Telefone</th>
+                    <th class="border border-white">Nível de acesso</th>
+                    <th class="border border-white">Remover usuário</th>
                 </tr>
             </thead>
 
@@ -83,14 +96,13 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
                 <?php if ($resultado->rowCount() > 0) : ?>
 
                     <?php foreach ($resultado as $linha) : ?>
-                        <tr>
-                            <td><?php echo $linha["id"]; ?></td>
-                            <td><?php echo $linha["nome"]; ?></td>
-                            <td><?php echo $linha["email"]; ?></td>
-                            <td><?php echo $linha["telefone"]; ?></td>
-                            <td><?php echo $linha["permissoes"]; ?></td>
-                            <td>
-                                <a href='edit.php?id=<?php echo $linha["id"]; ?>'>Editar</a>
+                        <tr class="border border-white">
+                            <td class="border border-white"><?php echo $linha["id"]; ?></td>
+                            <td class="border border-white"><?php echo $linha["nome"]; ?></td>
+                            <td class="border border-white"><?php echo $linha["email"]; ?></td>
+                            <td class="border border-white"><?php echo $linha["telefone"]; ?></td>
+                            <td class="border border-white"><a href='edit.php?id=<?php echo $linha["id"]; ?>'><?php echo $linha["permissoes"]; ?></a></td>
+                            <td class="border border-white">
                                 <a href='../delete.php?id=<?php echo $linha["id"]; ?>' onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
 
                             </td>
@@ -106,12 +118,9 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
             </tbody>
 
         </table>
+        </div>
 
     <?php endif; ?>
-
-    <?php
-    echo "<a href='../php/logout.php'>Sair da conta</a>";
-    ?>
 
 </body>
 
