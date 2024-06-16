@@ -20,11 +20,12 @@ h2 {
   /* Move o h1 para a esquerda */
   margin-right: auto;
   /* Move o h1 para a direita */
+  color: #fff;
 }
 
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: #003554;
 }
 
 .topnav a {
@@ -49,7 +50,7 @@ h2 {
 
 
 .topnav a.active {
-  background-color: #04aa6d;
+  background-color: #004d74;
   color: white;
 }
 
