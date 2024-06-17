@@ -13,11 +13,11 @@ if($id && $nome && $permissoes){
         $sql->bindvalue(1,$nome);
         $sql->bindvalue(2,$permissoes);
         $sql->execute();
-        header("location: ../php/php_testes/index.php");
+        header("location: ../pages/usuarios.php");
         exit;
 
 }else{
-    header("location: ../php/php_testes/index.php");
+    header("location: ../pages/usuarios.php");
 exit;
 
 
