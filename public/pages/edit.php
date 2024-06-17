@@ -1,10 +1,13 @@
 <?php
 
+session_start(); // Inicia a sessão
+
 //Verifica se a sessão está vazia
-if (empty($_SESSION)) {
-    header("Location:../index.php");
-    exit;
+if (empty($_SESSION['usuario'])) {
+  header("Location:../index.php");
+  exit;
 }
+
 
 require '../php/config.php';
 $id = filter_input(INPUT_GET, 'id');
