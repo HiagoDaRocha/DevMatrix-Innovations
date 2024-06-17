@@ -7,6 +7,22 @@ if (empty($_SESSION['usuario'])) {
   exit;
 }
 
+// Verificar se a variável de sessão 'user_logged_in' não está definida
+if (!isset($_SESSION['user_logged_in'])) {
+  // Definir a variável de sessão
+  $_SESSION['user_logged_in'] = true;
+  // Exibir o alerta de boas-vindas com o nome do usuário
+  echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Bem-vindo ao DevMatrix Innovations!',
+                text: '" . $_SESSION['usuario']['nome'] . "',
+                icon: 'success'
+            });
+        });
+    </script>";
+}
+
 // Conexão com o banco de dados
 require '../php/config.php'; // Inclusão com arquivo de configuração com a conexão com o banco de dados
 
@@ -123,8 +139,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     if ($caixas) {
       foreach ($caixas as $caixa) {
         echo "<div class='box'>";
-        echo "<h3 id='titulo_box'>Título: {$caixa['titulo']}</h3>";
-        echo "<p>Texto: {$caixa['texto']}</p>";
+        echo "<h3 id='titulo_box'> {$caixa['titulo']}</h3>";
+        echo "<p>{$caixa['texto']}</p>";
         // Adicionei botões para aceitar ou rejeitar a entrega
         echo "<form action='home.php' method='post'>";
         echo "<input type='hidden' name='box_id' value='{$caixa['id']}'>";
