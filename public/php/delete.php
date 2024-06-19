@@ -9,11 +9,11 @@ $id = filter_input(INPUT_GET, 'id');
         $sql = $pdo->prepare("DELETE FROM usuarios WHERE id = ?");
         $sql->bindvalue(1,$id);
         $sql->execute();
-        header("location: ../php/php_testes/index.php");
+        header("location: ../pages/usuarios.php");
         exit;
 
 }else{
-    header("location: ../php/php_testes/index.php");
+    header("location: ../pages/usuarios.php");
 
 
 }
