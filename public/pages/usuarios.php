@@ -103,7 +103,7 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
                             <td class="border border-white"><?php echo $linha["telefone"]; ?></td>
                             <td class="border border-white"><a href='edit.php?id=<?php echo $linha["id"]; ?>'><?php echo $linha["permissoes"]; ?></a></td>
                             <td class="border border-white">
-                                <a href='../delete.php?id=<?php echo $linha["id"]; ?>' onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                                <a href='../php/delete.php?id=<?php echo $linha["id"]; ?>' onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
 
                             </td>
                         </tr>
