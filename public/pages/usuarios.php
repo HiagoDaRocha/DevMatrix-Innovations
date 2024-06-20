@@ -34,7 +34,7 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Usuários</title>
     <link rel="stylesheet" href="../assets/css/usuarios.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -44,6 +44,7 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
 <body>
 
 <script src="../assets/js/usuarios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" ></script>
 
 <header>
     <div class="topnav" id="myTopnav"><br>
@@ -103,7 +104,7 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
                             <td class="border border-white"><?php echo $linha["telefone"]; ?></td>
                             <td class="border border-white"><a href='edit.php?id=<?php echo $linha["id"]; ?>'><?php echo $linha["permissoes"]; ?></a></td>
                             <td class="border border-white">
-                                <a href='../php/delete.php?id=<?php echo $linha["id"]; ?>' onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+                                <a href='../php/delete.php?id=<?php echo $linha["id"]; ?>' onclick="deletar(event, this.href)">Excluir</a>
 
                             </td>
                         </tr>
