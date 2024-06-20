@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>DevMatrix Innovations</title>
   <link rel="stylesheet" href="../assets/css/home.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -178,7 +178,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
   // Verifique se a caixa foi aceita e exiba uma mensagem se necessário
   if (isset($_SESSION['caixa_aceita']) && $_SESSION['caixa_aceita'] === true) {
     // Exiba o alerta após aceitar a caixa
-    echo "<script>Swal.fire({ title: 'Good job!', text: 'You clicked the button!', icon: 'success' });</script>";
+    echo "<script>Swal.fire({ title: 'Chamado aceito!', text: 'Por favor verificar chamado e faze-lo!', icon: 'success' });</script>";
 
     // Limpe a variável de sessão após exibir a mensagem
     unset($_SESSION['caixa_aceita']);
