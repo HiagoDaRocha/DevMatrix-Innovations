@@ -72,18 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
     header("Location: home.php");
     exit(); // Certifique-se de sair após o redirecionamento
 
-  } elseif ($action == 'rejeitar') {
-    // Verifica se a caixa pertence ao usuário atual antes de excluí-la
-    $stmt = $pdo->prepare("SELECT * FROM box WHERE id = ? AND user_id = ?");
-    $stmt->execute([$box_id, $_SESSION['usuario']['id']]);
-    $caixa = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($caixa) {
-      // Exclui a caixa apenas se pertencer ao usuário atual
-      $stmt = $pdo->prepare("DELETE FROM box WHERE id = ?");
-      $stmt->execute([$box_id]);
-    }
-  }
+  } 
 }
 
 
@@ -157,14 +146,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         echo "  <span>Aceitar</span>";
         echo "</button>";
 
-        echo "<button type='submit' name='action' value='rejeitar' id='reject'>";
-        echo "  <span class='text'>Rejeitar</span>";
-        echo "  <span class='icon'>";
-        echo "    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>";
-        echo "      <path d='M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z'></path>";
-        echo "    </svg>";
-        echo "  </span>";
-        echo "</button>";
         echo"</div>";
         echo "</form>";
         echo "</div>";
