@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
         <a href="servico.php"><i class="fa fa-briefcase"></i> Serviços</a>
       <?php endif; ?>
       <a class="active" href="trabalho.php"><i class="fa fa-archive"></i> Chamados</a>
-      <a href="#"><i class="fa fa-user-circle-o"></i> Login</a>
+      <a href="login.php"><i class="fa fa-user-circle-o"></i> Login</a>
       <?php
       echo "<a href='../php/logout.php'>Sair da conta</a>";
       ?>
