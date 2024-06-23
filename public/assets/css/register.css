@@ -137,7 +137,7 @@ textarea {
   /* Adiciona bordas arredondadas */
   /*background-color: #000000;*/
   margin-bottom: 5%;
-  height: 1vh;
+  height: 2vh;
 }
 
 /* Estilos para o contêiner do campo de senha */
@@ -165,6 +165,7 @@ textarea {
 select {
   width: 48%;
   border-radius: 6px;
+  height: 43.16px;
 }
 
 .register-box input[type="date"] {
