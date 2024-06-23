@@ -55,8 +55,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             move_uploaded_file($file['tmp_name'], 'C:/xampp/htdocs/tcc_tecnico/uploads/' . $file_name);
 
 
+
+
             // Redireciona para a página inicial após o cadastro bem-sucedido
-            header("Location: ../pages/home.php");
+            header("Location: index.php");
             exit;
         } else {
             // Redireciona para a página de adicionar em caso de e-mail já em uso
