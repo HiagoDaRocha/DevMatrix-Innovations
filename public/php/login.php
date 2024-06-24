@@ -11,7 +11,7 @@ if (empty($_SESSION['usuario'])) {
 }
 
 // Obtém o ID do usuário da sessão
-$userId = $_SESSION['usuario']['id']; // Certifique-se de que o ID do usuário está armazenado na sessão
+$userId = $_SESSION['usuario']['id'];
 
 // Consulta o banco de dados para verificar o nível de acesso do usuário
 $sql = $pdo->prepare("SELECT permissoes FROM usuarios WHERE login = ?");
@@ -31,7 +31,7 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['nome'])) {
     $nomeCompleto = $_SESSION['usuario']['nome'];
 
     // Consulta para recuperar os dados do usuário
-    $sql = $pdo->prepare("SELECT email, senha, login, telefone, descricao FROM usuarios WHERE id = ?");
+    $sql = $pdo->prepare("SELECT email, senha, login, telefone, descricao, imagens FROM usuarios WHERE id = ?");
     $sql->bindValue(1, $userId);
     $sql->execute();
 
@@ -39,13 +39,30 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['nome'])) {
 
     if ($userData) {
         $email = $userData['email'];
-        $senha = $userData['senha']; // Não exiba a senha hash no formulário
+        $senha = $userData['senha'];
         $login = $userData['login'];
         $telefone = $userData['telefone'];
         $descricao = $userData['descricao'];
+        $imagens = $userData['imagens'];
     }
 }
 
+// Verifica se o formulário foi submetido e se há uma imagem enviada
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['fileImage'])) {
+    // Dados do arquivo
+    $file_name = $_FILES['fileImage']['name'];
+    $file_tmp = $_FILES['fileImage']['tmp_name'];
+    $savePath = $file_name; // Caminho onde a imagem será salva
+
+    // Move a imagem para o diretório desejado
+    if (move_uploaded_file($file_tmp, 'C:/xampp/htdocs/tcc_tecnico/uploadsImages/' . $savePath)) {
+
+        // Atualiza o registro do usuário no banco de dados com o caminho da imagem
+        $sql = $pdo->prepare("UPDATE usuarios SET imagens = ? WHERE id = ?");
+        $sql->execute([$savePath, $userId]);
+
+    } 
+}
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
