@@ -3,7 +3,7 @@
 //conexão com o banco de dados 
 require 'config.php';
 
-session_start();
+
 
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,6 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file = $_FILES['file']; // Dados do arquivo
     $file_name = $file['name']; // Nome do arquivo
 
+    $avatar = 'login-de-usuario.png';
+
     // Verifica se todos os campos foram preenchidos e se o e-mail é válido
     if ($nome && $email && $senha && $login && $telefone && $cpf && $cargo && $descricao && $birthday && $file_name) {
 
@@ -34,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($sql->rowCount() === 0) {
             // Insere os dados no banco de dados
-            $sql = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, login, telefone, cpf, cargo, descricao, birthday, curriculo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $sql = $pdo->prepare("INSERT INTO usuarios (nome, email, senha, login, telefone, cpf, cargo, descricao, birthday, curriculo, imagens) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
             $sql->bindValue(1, $nome);
             $sql->bindValue(2, $email);
@@ -46,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sql->bindValue(8, $descricao);
             $sql->bindValue(9, $birthday);
             $sql->bindValue(10, $file_name); // Armazena apenas o nome do arquivo no banco de dados
+            $sql->bindValue(11, $avatar);
             $sql->execute();
 
             // Define a variável de sessão com os dados do novo usuário
