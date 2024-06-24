@@ -31,9 +31,20 @@ include '../php/login.php';
                 <a href="servico.php"><i class="fa fa-briefcase"></i> Serviços</a>
             <?php endif; ?>
             <a href="trabalho.php"><i class="fa fa-archive"></i> Chamados</a>
-            <a class="active" href="login.php"><i class="fa fa-user-circle-o"></i> Login</a>
+            <a class="active" href="login.php">
+                <?php if ($imagens == 'login-de-usuario.png') : ?>
+                    <?php
+                    $caminhoCompleto = '/tcc_tecnico/public/assets/images/' . $imagens;
+                    ?>
+                    <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
+                <?php else : ?>
+                    <?php
+                    $caminhoCompleto = '/tcc_tecnico/uploadsImages/' . $imagens;
+                    ?>
+                    <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
+                <?php endif; ?> Login</a>
             <?php
-            echo "<a href='../php/logout.php'>Sair da conta</a>";
+            echo "<a id='logout' href='../php/logout.php'>Sair da conta</a>";
             ?>
             <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
                 <div class="container">
@@ -53,7 +64,18 @@ include '../php/login.php';
 
             <div class="max-width">
                 <div class="imageContainer">
-                    <img src="../assets/images/login-de-usuario.png" alt="Selecione uma imagem" id="imgPhoto">
+                    <?php if ($imagens == 'login-de-usuario.png') : ?>
+                        <?php
+                        $caminhoCompleto = '/tcc_tecnico/public/assets/images/' . $imagens;
+                        ?>
+                        <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto">
+                    <?php else : ?>
+                        <?php
+                        $caminhoCompleto = '/tcc_tecnico/uploadsImages/' . $imagens;
+                        ?>
+                        <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto">
+                    <?php endif; ?>
+
                 </div>
             </div>
 
