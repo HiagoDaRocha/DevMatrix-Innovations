@@ -9,14 +9,13 @@ body {
   background-size: 100% 100%;
 }
 
-/* Estilos para os títulos de primeiro nível */
 h2 {
   display: flex;
   justify-content: center;
   margin-left: auto;
-  /* Move o h1 para a esquerda */
+  /* Move o h2 para a esquerda */
   margin-right: auto;
-  /* Move o h1 para a direita */
+  /* Move o h2 para a direita */
   color: #fff;
 }
 
@@ -24,9 +23,9 @@ h4 {
   display: flex;
   justify-content: center;
   margin-left: auto;
-  /* Move o h1 para a esquerda */
+  /* Move o h4 para a esquerda */
   margin-right: auto;
-  /* Move o h1 para a direita */
+  /* Move o h4 para a direita */
   color: #fff;
 }
 
@@ -75,6 +74,7 @@ h4 {
 .topnav .fa {
   font-size: 30px;
 }
+
 .container {
   display: inline-block;
   cursor: pointer;
@@ -97,7 +97,6 @@ form label[for="password-login"],
 form label[for="email"] {
   display: inline-block;
   width: 29%;
-  /* width a ajustar */
   text-align: center;
   margin-bottom: 6%;
   padding-right: 10%;
@@ -115,10 +114,8 @@ textarea {
 
 /* Estilos para o contêiner do formulário de login */
 .login-box {
-  /*background-color: #000000;*/
-  /* Define o fundo como preto */
   width: 72%;
-  /* Define a largura como 70% da largura da janela */
+  /* Define a largura como 72% da largura da janela */
   max-width: 500px;
   /* Define a largura máxima */
   padding: 20px;
@@ -144,7 +141,7 @@ textarea {
   border-radius: 4%;
   /* Adiciona bordas arredondadas */
   width: 27%;
-  /* Define a largura como 20% */
+  /* Define a largura como 27% */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,21 +152,17 @@ textarea {
   color: #ffffff;
 }
 
-/* Estilos para os campos de texto e senha */
 .login-box input[type="text"],
 .login-box input[type="password"],
 .login-box input[type="number"],
 .login-box input[type="tel"],
 .login-box input[type="email"] {
   width: 46%;
-  /* Define a largura como 90% */
+  /* Define a largura como 46% */
   padding: 10px;
   /* Adiciona preenchimento interno */
-  /*margin-bottom: 30px;*/
-  /* Adiciona margem inferior */
   border-radius: 6px;
   /* Adiciona bordas arredondadas */
-  /*background-color: #000000;*/
   margin-bottom: 5%;
   height: 4vh;
 }
@@ -245,7 +238,7 @@ form {
 
 /* Estilos para os botões de envio quando passa o mouse por cima */
 .login-box #send:hover {
-  transform: scale(1.3);
+  transform: scale(1.2);
   /* Aumenta ligeiramente o tamanho quando passa o mouse por cima */
 }
 
