@@ -1,11 +1,11 @@
 html,
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
   height: 100%; /* Define a altura do elemento pai como 100% da viewport */
   background-image: url("../images/Image_Work.jpg");
-  border-image: fill 0 linear-gradient(#0003, #000);/*com ou sem ver com outras pessoas*/
+  border-image: fill 0 linear-gradient(#0003, #000);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
@@ -16,7 +16,6 @@ header {
   align-items: center;
 }
 
-/* Estilos para os títulos de primeiro nível */
 h1 {
   display: flex;
   justify-content: center;
@@ -35,8 +34,6 @@ h2{
 
 /* Estilos para o contêiner do formulário de login */
 .login-box {
-  /*background-color: #000000;*/
-  /* Define o fundo como preto */
   width: 70%;
   /* Define a largura como 70% da largura da janela */
   max-width: 400px;
@@ -71,7 +68,7 @@ h2{
   border-radius: 4%;
   /* Adiciona bordas arredondadas */
   width: 27%;
-  /* Define a largura como 20% */
+  /* Define a largura como 27% */
   margin: 15px;
   /* Adiciona margem */
   transition: transform 0.2s;
@@ -91,8 +88,6 @@ h2{
   /* Adiciona margem inferior */
   border-radius: 3px;
   /* Adiciona bordas arredondadas */
-  /*background-color: #000000;*/
-  /* Define o fundo como preto */
   border-bottom: 1px solid #0d3672;
   border-top: none;
   border-left: none;
@@ -120,7 +115,6 @@ h2{
   padding-right: 20px;
   /* Adiciona espaço para o ícone */
   padding-left: 10px;
-  /* Ajusta o padding esquerdo conforme necessário */
 }
 
 /* Estilos para o ícone do olho */
@@ -138,7 +132,6 @@ h2{
 }
 
 .link-text {
- /* Define a cor do texto como verde */
  display: flex;
  /* Usa um layout flexível */
  justify-content: center;
