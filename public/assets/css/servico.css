@@ -6,13 +6,12 @@ body {
   height: 100%;
   background-image: url("../images/rede_wifi.jpg");
   background-repeat: no-repeat;
-  border-image: fill 0 linear-gradient(#0003, #000); /*com ou sem ver com outras pessoas*/
+  border-image: fill 0 linear-gradient(#0003, #000);
   background-attachment: fixed;
   background-size: 100% 100%;
   /* Define a altura do elemento pai como 100% da viewport */
 }
 
-/* Estilos para os títulos de primeiro nível */
 h2 {
   display: flex;
   justify-content: center;
@@ -26,6 +25,11 @@ h2 {
 .topnav {
   overflow: hidden;
   background-color: #003554;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .topnav a {
@@ -35,8 +39,12 @@ h2 {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
   gap: 10px;
+}
+
+#logout {
+  height: 58px;
 }
 
 .topnav a:hover {
@@ -51,8 +59,16 @@ h2 {
   color: white;
 }
 
+#login {
+  height: 58px;
+}
+
 .topnav .icon {
   display: none;
+}
+
+.topnav .fa {
+  font-size: 30px;
 }
 
 .container {
@@ -70,43 +86,25 @@ h2 {
   transition: 0.4s;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-table,
-th,
-td {
-  border: 1px solid black;
-  padding: 8px;
-}
-
-th {
-  background-color: #f2f2f2;
-  text-align-last: center;
-  place-content: center;
-}
-
 /* Estilos para o contêiner do formulário de login */
 #service-box {
   background-color: #032030;
-  /* Define o fundo como preto */
+  
   width: 72%;
-  /* Define a largura como 70% da largura da janela */
+  /* Define a largura como 72% da largura da janela */
   max-width: 500px;
-  /* Define a largura máxima */
+  /* Define a largura para 500px */
   padding: 20px;
   /* Adiciona preenchimento interno */
   border: 1px solid #3b3e41;
   /* Adiciona uma borda */
   border-radius: 5px;
   margin: 0 auto;
+  margin-top: 160px;
 }
 
-form{
-
-    display: ruby-text;
+form {
+  display: ruby-text;
 }
 
 form label[for="titulo"],
@@ -121,14 +119,14 @@ form label[for="texto"] {
 }
 
 textarea {
-    width: 99%;
-    border-radius: 6px;
-  }
+  width: 99%;
+  border-radius: 6px;
+}
 
-/* Estilos para os campos de texto e senha */
-#service-box input[type="text"]{
+
+#service-box input[type="text"] {
   width: 100%;
-  /* Define a largura como 90% */
+  /* Define a largura como 100% */
   padding: 10px;
   /* Adiciona preenchimento interno */
   border-radius: 6px;
@@ -138,32 +136,44 @@ textarea {
 }
 
 #service-box input[type="submit"] {
-    background-color: #14448d;
-    border: 1px solid transparent;
-    /* Adiciona uma borda */
-    cursor: pointer;
-    /* Define o cursor como apontador */
-    height: 2.5em;
-    /* Define a altura */
-    border-radius: 4%;
-    /* Adiciona bordas arredondadas */
-    width: 22%;
-    /* Define a largura como 20% */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    transition: transform 0.2s;
-    /* Adiciona uma transição suave */
-    margin-top: 10%;
-    color: #ffffff;
+  background-color: #14448d;
+  border: 1px solid transparent;
+  /* Adiciona uma borda */
+  cursor: pointer;
+  /* Define o cursor como apontador */
+  height: 2.5em;
+  /* Define a altura */
+  border-radius: 4%;
+  /* Adiciona bordas arredondadas */
+  width: 22%;
+  /* Define a largura como 22% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  transition: transform 0.2s;
+  /* Adiciona uma transição suave */
+  margin-top: 10%;
+  color: #ffffff;
 }
 
-  /* Estilos para os botões de envio quando passa o mouse por cima */
+/* Estilos para os botões de envio quando passa o mouse por cima */
 #service-box #send:hover {
-    transform: scale(1.2);
-    /* Aumenta ligeiramente o tamanho quando passa o mouse por cima */
-  }
+  transform: scale(1.2);
+  /* Aumenta ligeiramente o tamanho quando passa o mouse por cima */
+}
+
+#imgPhoto2 {
+  max-width: 50px;
+  max-height: 50px;
+  background-color: #eee;
+  border: 2px solid #111;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: -11px;
+  margin-left: -11px;
+}
 
 @media screen and (max-width: 600px) {
   .topnav a:not(:first-child) {
@@ -173,16 +183,22 @@ textarea {
   .topnav a.icon {
     float: right;
     display: block;
+    padding: 3.5px;
+  }
+
+  .topnav a.icon:hover {
+    padding: 3.5px;
   }
 
   .topnav.responsive {
-    position: relative;
+    position: absolute;
   }
 
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 3.1px;
+    padding: 3.5px;
   }
 
   .topnav.responsive a {
@@ -205,5 +221,14 @@ textarea {
 
   .topnav a:hover {
     padding: 1.2rem;
+  }
+
+  #imgPhoto2 {
+    height: 7rem;
+    width: 7rem;
+  }
+
+  .service-box {
+    margin-top: 180px;
   }
 }
