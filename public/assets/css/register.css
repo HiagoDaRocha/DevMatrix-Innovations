@@ -1,13 +1,11 @@
 html,
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background-image: url("../images/Image_Server_Racks.jpg");
-  border-image: fill 0 linear-gradient(#0003, #000); /*com ou sem ver com outras pessoas*/
-  background-repeat: no-repeat;
+  border-image: fill 0 linear-gradient(#0003, #000); 
   background-attachment: fixed;
   background-size: 100% 100%;
 
-  /*background: linear-gradient(45deg, #1c4d6b, #4169E1, #27c9e6);*/
 }
 
 header {
@@ -15,7 +13,6 @@ header {
   align-items: center;
 }
 
-/* Estilos para os títulos de primeiro nível */
 h1 {
   display: flex;
   justify-content: center;
@@ -27,9 +24,8 @@ h1 {
   color: #ffffff;
 }
 
-/* Estilos para os títulos de primeiro nível */
 h2 {
-  /* Define a cor do texto como verde */
+  
   display: flex;
   /* Usa um layout flexível */
   justify-content: center;
@@ -39,7 +35,7 @@ h2 {
 
 /* Estilos para os links */
 a {
-  /* Define a cor do texto como verde */
+  
   display: flex;
   /* Usa um layout flexível */
   justify-content: center;
@@ -65,7 +61,6 @@ form label[for="file"],
 form label[for="option"] {
   display: inline-block;
   width: 29%;
-  /* width a ajustar */
   text-align: center;
   margin-bottom: 6%;
   padding-right: 10%;
@@ -83,12 +78,10 @@ textarea {
 
 /* Estilos para o contêiner do formulário de login */
 .register-box {
-  /*background-color: #000000;*/
-  /* Define o fundo como preto */
   width: 72%;
-  /* Define a largura como 70% da largura da janela */
+  /* Define a largura como 72% da largura da janela */
   max-width: 500px;
-  /* Define a largura máxima */
+  /* Define a largura para 500px */
   padding: 20px;
   /* Adiciona preenchimento interno */
   border: 1px solid #3b3e41;
@@ -110,7 +103,7 @@ textarea {
   border-radius: 4%;
   /* Adiciona bordas arredondadas */
   width: 27%;
-  /* Define a largura como 20% */
+  /* Define a largura como 27% */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,14 +121,11 @@ textarea {
 .register-box input[type="tel"],
 .register-box input[type="email"] {
   width: 43.5%;
-  /* Define a largura como 90% */
+  /* Define a largura como 43.5% */
   padding: 10px;
   /* Adiciona preenchimento interno */
-  /*margin-bottom: 30px;*/
-  /* Adiciona margem inferior */
   border-radius: 6px;
   /* Adiciona bordas arredondadas */
-  /*background-color: #000000;*/
   margin-bottom: 5%;
   height: 2vh;
 }
@@ -188,7 +178,6 @@ select {
 @media screen and (max-width: 768px) {
   header {
     padding-right: 4.5em;
-    /* Aumenta o espaço à direita para telas menores */
     text-align: -webkit-center;
   }
 
