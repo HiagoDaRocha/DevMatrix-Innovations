@@ -35,10 +35,9 @@ h4 {
   background-color: #003554;
   margin: 0;
   position: fixed;
-  top:0;
+  top: 0;
   left: 0;
   width: 100%;
-  
 }
 
 .topnav a {
@@ -52,8 +51,7 @@ h4 {
   gap: 10px;
 }
 
-#logout{
-
+#logout {
   height: 58px;
 }
 
@@ -74,8 +72,7 @@ h4 {
   display: none;
 }
 
-.topnav .fa{
-
+.topnav .fa {
   font-size: 30px;
 }
 .container {
@@ -133,7 +130,6 @@ textarea {
   background-color: #022b42;
   margin-top: 160px;
   text-align: -webkit-center;
-  
 }
 
 /* Estilos para os botões de envio */
@@ -165,7 +161,7 @@ textarea {
 .login-box input[type="number"],
 .login-box input[type="tel"],
 .login-box input[type="email"] {
-  width: 60%;
+  width: 46%;
   /* Define a largura como 90% */
   padding: 10px;
   /* Adiciona preenchimento interno */
@@ -190,12 +186,17 @@ textarea {
   /* Define a posição como absoluta */
   top: 41%;
   /* Alinha verticalmente ao centro */
-  left: 84%;
+  left: 82%;
   /* Define a posição à direita */
   transform: translateY(-80%);
   /* Ajusta a posição verticalmente */
   cursor: pointer;
   /* Define o cursor como apontador */
+}
+
+#password-login {
+  padding-right: 24px;
+
 }
 
 select {
@@ -264,8 +265,7 @@ form {
   }
 
   .topnav.responsive {
-    position: fixed;
-
+    position: absolute;
   }
 
   .topnav.responsive .icon {
@@ -297,14 +297,12 @@ form {
     padding: 1.2rem;
   }
 
-  #imgPhoto2{
-
+  #imgPhoto2 {
     height: 7rem;
     width: 7rem;
   }
 
-  .login-box{
-
+  .login-box {
     margin-top: 180px;
-  } 
+  }
 }
