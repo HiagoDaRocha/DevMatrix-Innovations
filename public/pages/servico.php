@@ -1,6 +1,6 @@
 <?php
 
-require '../php/trabalho.php';
+require '../php/servico.php';
 
 ?>
 
