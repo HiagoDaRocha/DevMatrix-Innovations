@@ -11,20 +11,25 @@ body {
   /* Define a altura do elemento pai como 100% da viewport */
 }
 
-/* Estilos para os títulos de primeiro nível */
 h2 {
   display: flex;
   justify-content: center;
   margin-left: auto;
-  /* Move o h1 para a esquerda */
+  /* Move o h2 para a esquerda */
   margin-right: auto;
-  /* Move o h1 para a direita */
+  /* Move o h2 para a direita */
   color: #fff;
 }
 
 .topnav {
   overflow: hidden;
   background-color: #003554;
+  margin: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
 }
 
 .topnav a {
@@ -34,10 +39,13 @@ h2 {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 20px;
   gap: 10px;
 }
 
+#logout {
+  height: 58px;
+}
 
 .topnav a:hover {
   background-color: #ddd;
@@ -51,6 +59,14 @@ h2 {
 .topnav a.active {
   background-color: #004d74;
   color: white;
+}
+
+#login{
+  height: 58px;
+}
+
+.topnav .fa {
+  font-size: 30px;
 }
 
 .topnav .icon {
@@ -87,7 +103,7 @@ h2 {
 #box-container {
 
   text-align: -webkit-center;
-  
+  margin-top: 180px;
 }
 
 #titulo_box{
@@ -172,14 +188,14 @@ h2 {
 }
  
 #reject .text {
-  transform: translateX(10px);
   color: white;
   font-weight: bold;
+  margin-left: 10px;
 }
  
 #reject .icon {
-  position: absolute;
-  transform: translateX(75px);
+  position: static;
+  float: 20px;
   height: 40px;
   width: 40px;
   display: flex;
@@ -204,7 +220,7 @@ h2 {
 #reject:hover .icon {
   width: 110px;
   border-left: none;
-  transform: translateX(-7px);
+  transform: translateX(-35px);
 }
  
 #reject:focus {
@@ -217,9 +233,21 @@ h2 {
 
 .buttons {
   display: flex;
-  gap: 10px; 
+  gap: 6px; 
   padding-bottom: 20px;
   justify-content: center; /* Para centralizar os botões no contêiner pai */
+}
+
+#imgPhoto2 {
+  max-width: 50px;
+  max-height: 50px;
+  background-color: #eee;
+  border: 2px solid #111;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: -11px;
+  margin-left: -11px;
 }
 
 @media screen and (max-width: 600px) {
@@ -230,16 +258,18 @@ h2 {
   .topnav a.icon {
     float: right;
     display: block;
+    padding: 3.5px;
   }
 
   .topnav.responsive {
-    position: relative;
+    position: absolute;
   }
 
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 3.1px;
+    padding: 3.5px;
   }
 
   .topnav.responsive a {
@@ -262,5 +292,14 @@ h2 {
 
   .topnav a:hover {
     padding:1.2rem;
+  }
+
+  #imgPhoto2 {
+    height: 7rem;
+    width: 7rem;
+  }
+
+  #box-container {
+    margin-top: 180px;
   }
 }
