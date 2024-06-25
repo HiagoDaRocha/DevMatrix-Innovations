@@ -28,6 +28,30 @@ $sql = "SELECT * FROM usuarios WHERE id = $id";
 $sql = $pdo->query($sql);
 $info = $sql->fetch();
 
+// Obtém o ID do usuário da sessão
+$userId = $_SESSION['usuario']['id'];
+
+// Verifica se a variável de sessão 'usuario' está definida e possui um nome
+if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['nome'])) {
+  $nomeCompleto = $_SESSION['usuario']['nome'];
+
+  // Consulta para recuperar os dados do usuário
+  $sql = $pdo->prepare("SELECT email, senha, login, telefone, descricao, imagens FROM usuarios WHERE id = ?");
+  $sql->bindValue(1, $userId);
+  $sql->execute();
+
+  $userData = $sql->fetch(PDO::FETCH_ASSOC);
+
+  if ($userData) {
+      $email = $userData['email'];
+      $senha = $userData['senha'];
+      $login = $userData['login'];
+      $telefone = $userData['telefone'];
+      $descricao = $userData['descricao'];
+      $imagens = $userData['imagens'];
+  }
+}
+
 
 ?>
 
@@ -56,9 +80,20 @@ $info = $sql->fetch();
                 <a href="servico.php"><i class="fa fa-briefcase"></i> Serviços</a>
             <?php endif; ?>
             <a href="trabalho.php"><i class="fa fa-archive"></i> Chamados</a>
-            <a href="login.php"><i class="fa fa-user-circle-o"></i> Login</a>
+            <a href="login.php" id="login">
+                <?php if ($imagens == 'login-de-usuario.png') : ?>
+                    <?php
+                    $caminhoCompleto = '/tcc_tecnico/public/assets/images/' . $imagens;
+                    ?>
+                    <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
+                <?php else : ?>
+                    <?php
+                    $caminhoCompleto = '/tcc_tecnico/uploadsImages/' . $imagens;
+                    ?>
+                    <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
+                <?php endif; ?> Login</a>
             <?php
-            echo "<a href='../php/logout.php'>Sair da conta</a>";
+            echo "<a id='logout' href='../php/logout.php'>Sair da conta</a>";
             ?>
             <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
                 <div class="container">
@@ -74,7 +109,7 @@ $info = $sql->fetch();
 
     <div id="permission-box">
         <form method="GET" action="../php/edit.php">
-        <input type="hidden" name="id" value="<?= $info['id']; ?>" />
+            <input type="hidden" name="id" value="<?= $info['id']; ?>" />
             <input type="hidden" name="nome" id="name" value="<?= isset($info['nome']) ? $info['nome'] : ''; ?>" /><br><br>
             <h3 id="name"><?= isset($info['nome']) ? htmlspecialchars($info['nome'], ENT_QUOTES, 'UTF-8') : ''; ?></h3>
             <br><br>
