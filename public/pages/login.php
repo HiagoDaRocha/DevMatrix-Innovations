@@ -91,7 +91,7 @@ require '../php/login.php';
 
             <div class="password-container">
                 <label for="password-login">Senha:</label>
-                <input type="password" name="password-login" id="password-login" placeholder="Digite uma senha" value="<?php echo htmlspecialchars($login); ?>"><br>
+                <input type="password" name="password-login" id="password-login" placeholder="Digite uma senha nova"><br>
                 <i class="bi bi-eye-slash" id="togglePassword"></i>
             </div>
 
