@@ -25,8 +25,8 @@ if ($dados_usuario && $dados_usuario['permissoes'] === 1) {
 
 // Processamento dos dados do formulário para criar a caixa
 if ($administrador && isset($_POST['submit'])) {
-  $titulo = $_POST['titulo'];
-  $texto = $_POST['texto'];
+  $titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+  $texto = filter_input(INPUT_POST, 'texto', FILTER_SANITIZE_SPECIAL_CHARS);
 
   // Inserção dos dados no banco de dados
   $stmt = $pdo->prepare("INSERT INTO box (user_id, titulo, texto) VALUES (?, ?, ?)");

@@ -3,9 +3,9 @@
 require 'config.php';
 
 
-$id = filter_input(INPUT_GET ,'id');
-$nome = ucwords(strtolower(filter_input(INPUT_GET, 'nome')));
-$permissoes = filter_input(INPUT_GET, 'permissoes');
+$id = filter_input(INPUT_GET ,'id', FILTER_SANITIZE_NUMBER_INT);
+$nome = ucwords(strtolower(filter_input(INPUT_GET, 'nome', FILTER_SANITIZE_SPECIAL_CHARS)));
+$permissoes = filter_input(INPUT_GET, 'permissoes', FILTER_SANITIZE_NUMBER_INT);
 
 if($id && $nome && $permissoes){
         $sql = $pdo->prepare("UPDATE usuarios SET nome = ?, permissoes = ? WHERE id = ?");

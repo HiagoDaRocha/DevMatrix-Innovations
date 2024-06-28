@@ -2,7 +2,7 @@
 //conexão com o banco de dados
 require 'config.php';
 
-$id = filter_input(INPUT_GET, 'id');
+$id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
     if($id){
         

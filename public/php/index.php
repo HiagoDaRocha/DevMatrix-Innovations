@@ -7,8 +7,9 @@ require '../php/config.php'; // Inclusão com arquivo de configuração com a co
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recupera o login ou email e a senha do formulário
-    $usuario = $_POST['usuario'];
-    $senha = $_POST['senha'];
+    $usuario = filter_input(INPUT_POST, 'usuario', FILTER_SANITIZE_SPECIAL_CHARS);
+    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_SPECIAL_CHARS);
+
 
     // Consulta o banco de dados para verificar o login ou email do usuário
     $sql = $pdo->prepare("SELECT * FROM usuarios WHERE login = ? OR email = ?");
