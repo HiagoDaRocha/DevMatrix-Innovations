@@ -66,16 +66,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['fileImage'])) {
 // Verifica se o formulário foi submetido
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $senha = password_hash($_POST['password-login'], PASSWORD_DEFAULT);
+    $senha = filter_input(INPUT_POST, 'password-login', FILTER_SANITIZE_SPECIAL_CHARS);
     $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, 'telephone', FILTER_SANITIZE_NUMBER_INT);
     $descricao = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_SPECIAL_CHARS);
+
+    if ($senha !== false) {
+        // Gerar o hash da senha
+        $password = password_hash($senha, PASSWORD_DEFAULT);
+        
+    } else {
+        
+        header("Location: ../pages/login.php");
+    }
+
 
     // Atualiza os outros dados no banco de dados
     $sql = $pdo->prepare("UPDATE usuarios SET login = ?, telefone = ?, senha = ?, email = ?, descricao = ? WHERE id = ?");
     $sql->bindValue(1, $login);
     $sql->bindValue(2, $telefone);
-    $sql->bindValue(3, $senha);
+    $sql->bindValue(3, $password);
     $sql->bindValue(4, $email);
     $sql->bindValue(5, $descricao);
     $sql->bindValue(6, $userId);

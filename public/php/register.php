@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //(FILTER_SANITIZE_SPECIAL_CHARS)Esse filtro serve para transformar tudo escrito em string, caso alguem tente colocar um código no input
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     //(FILTER_VALIDATE_EMAIL)Esse filtro serve para que o dado email seja enviado so se colocar um @
-    $senha = password_hash($_POST['password-register'], PASSWORD_DEFAULT);
+    $senha = filter_input(INPUT_POST, 'password-register', FILTER_SANITIZE_SPECIAL_CHARS);
     $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_SPECIAL_CHARS);
     $telefone = filter_input(INPUT_POST, 'telephone', FILTER_SANITIZE_NUMBER_INT);
     $cpf = filter_input(INPUT_POST, 'cpf', FILTER_SANITIZE_NUMBER_INT);
@@ -24,6 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $file_name = $file['name']; // Nome do arquivo
 
     $avatar = 'login-de-usuario.png';
+
+    if ($senha !== false) {
+        // Gerar o hash da senha
+        $password = password_hash($senha, PASSWORD_DEFAULT);
+        
+    } else {
+        
+        header("Location: register.php");
+    }
+
 
     // Verifica se todos os campos foram preenchidos e se o e-mail é válido
     if ($nome && $email && $senha && $login && $telefone && $cpf && $cargo && $descricao && $birthday && $file_name) {
@@ -40,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $sql->bindValue(1, $nome);
             $sql->bindValue(2, $email);
-            $sql->bindValue(3, $senha);
+            $sql->bindValue(3, $password);
             $sql->bindValue(4, $login);
             $sql->bindValue(5, $telefone);
             $sql->bindValue(6, $cpf);
