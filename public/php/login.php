@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['fileImage'])) {
     $savePath = $file_name; // Caminho onde a imagem será salva
 
     // Move a imagem para o diretório desejado
-    if (move_uploaded_file($file_tmp, 'C:/xampp/htdocs/tcc_tecnico/uploadsImages/' . $savePath)) {
+    if (move_uploaded_file($file_tmp, 'C:/xampp/htdocs/DevMatrix-Innovations/uploadsImages/' . $savePath)) {
 
         // Atualiza o registro do usuário no banco de dados com o caminho da imagem
         $sql = $pdo->prepare("UPDATE usuarios SET imagens = ? WHERE id = ?");
