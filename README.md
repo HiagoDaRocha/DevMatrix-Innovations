@@ -7,7 +7,7 @@ Este é o repositório do projeto TCC Técnico. Aqui estão os passos para come�
 Primeiro, você precisa clonar o repositório do GitHub. Você pode fazer isso usando o seguinte comando no terminal:
 
 
-git clone https://github.com/HiagoDaRocha/tcc_tecnico.git
+git clone https://github.com/HiagoDaRocha/DevMatrix-Innovations.git
 
 
 
