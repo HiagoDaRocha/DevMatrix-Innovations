@@ -90,8 +90,6 @@ h2 {
 #service-box {
   background-color: #032030;
   
-  width: 72%;
-  /* Define a largura como 72% da largura da janela */
   max-width: 500px;
   /* Define a largura para 500px */
   padding: 20px;
@@ -101,10 +99,6 @@ h2 {
   border-radius: 5px;
   margin: 0 auto;
   margin-top: 160px;
-}
-
-form {
-  display: ruby-text;
 }
 
 form label[for="titulo"],
