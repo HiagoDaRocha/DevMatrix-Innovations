@@ -16,7 +16,6 @@
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
 
   <?php
-  session_start();
 
   // Verifica se há uma mensagem de erro na sessão
   if (isset($_SESSION['error_message'])) {
@@ -61,7 +60,7 @@
 
     <div class="login-box">
       <h2>Login</h2>
-      <form method="post" action="../public/php/index.php">
+      <form method="post" action="php/index.php">
         <input type="text" name="usuario" placeholder="Usuário" required />
         <div class="password-container">
           <input type="password" name="senha" id="password" placeholder="Senha" required />

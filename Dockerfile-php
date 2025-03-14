@@ -1,0 +1,31 @@
+# Usa a imagem oficial do PHP 8.4.4 com Apache
+FROM php:8.4.4-apache
+
+# Instala extensões do PHP necessárias
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    zip \
+    unzip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd mysqli pdo pdo_mysql
+
+# Habilita o módulo de reescrita do Apache
+RUN a2enmod rewrite
+
+# Define o diretório de trabalho
+WORKDIR /var/www/html
+
+# Copia os arquivos para dentro do contêiner
+COPY ./www /var/www/html
+
+# Altera as permissões da pasta uploads para garantir que o Apache e PHP possam gravar nela
+# RUN chmod -R 777 /var/www/html/uploads
+# RUN chmod -R 777 /var/www/html/uploads
+
+# Expondo a porta do Apache (a porta real será definida pelo `docker-compose`)
+EXPOSE 80
+
+# Comando de inicialização do Apache
+CMD ["apache2-foreground"]

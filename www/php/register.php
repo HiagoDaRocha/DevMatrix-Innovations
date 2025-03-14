@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['usuario'] = ['nome' => $nome, 'login' => $login];
 
             // Move o arquivo para o diretório desejado
-            move_uploaded_file($file['tmp_name'], 'C:/xampp/htdocs/DevMatrix-Innovations/uploads/' . $file_name);
+            move_uploaded_file($file['tmp_name'], getenv('ROUTE_UPLOAD_CURRICULO') . $file_name);
 
 
 

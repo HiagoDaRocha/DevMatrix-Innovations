@@ -83,12 +83,12 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['nome'])) {
             <a href="login.php" id="login">
                 <?php if ($imagens == 'login-de-usuario.png') : ?>
                     <?php
-                    $caminhoCompleto = '/DevMatrix-Innovations/public/assets/images/' . $imagens;
+                    $caminhoCompleto = getenv('ROUTE_DEFAULT_IMAGE') . $imagens;
                     ?>
                     <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
                 <?php else : ?>
                     <?php
-                    $caminhoCompleto = '/DevMatrix-Innovations/uploadsImages/' . $imagens;
+                    $caminhoCompleto = getenv('ROUTE_UPLOAD_IMAGE') . $imagens;
                     ?>
                     <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
                 <?php endif; ?> Login</a>

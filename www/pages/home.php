@@ -1,6 +1,6 @@
-<?php
+<?php 
 
-require '../php/trabalho.php';
+require '../php/home.php';
 
 ?>
 
@@ -10,38 +10,39 @@ require '../php/trabalho.php';
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Chamados</title>
-  <link rel="stylesheet" href="../assets/css/trabalho.css" />
+  <title>DevMatrix Innovations</title>
+  <link rel="stylesheet" href="../assets/css/home.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body>
 
-  <script src="../assets/js/trabalho.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../assets/js/home.js"></script>
 
   <header>
     <div class="topnav" id="myTopnav"><br>
       <h2>DevMatrix Innovations</h2><br>
-      <a href="home.php"><i class="fa fa-fw fa-home"></i> Home</a>
+      <a class="active" href="home.php"><i class="fa fa-fw fa-home"></i> Home</a>
       <?php if ($administrador) : ?>
         <a href="usuarios.php"><i class="fa fa-group"></i> Usuários</a>
         <a href="servico.php"><i class="fa fa-briefcase"></i> Serviços</a>
       <?php endif; ?>
-      <a class="active" href="trabalho.php"><i class="fa fa-archive"></i> Chamados</a>
-      <a href="login.php" id="login">
+      <a href="trabalho.php"><i class="fa fa-archive"></i> Chamados</a>
+      <a id="login" href="login.php">
         <?php if ($imagens == 'login-de-usuario.png') : ?>
           <?php
-          $caminhoCompleto = '/DevMatrix-Innovations/public/assets/images/' . $imagens;
+          $caminhoCompleto = getenv('ROUTE_DEFAULT_IMAGE') . $imagens;
           ?>
           <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
         <?php else : ?>
           <?php
-          $caminhoCompleto = '/DevMatrix-Innovations/uploadsImages/' . $imagens;
+          $caminhoCompleto = getenv('ROUTE_UPLOAD_IMAGE') . $imagens;
           ?>
           <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
         <?php endif; ?> Login</a>
-
       <?php
       echo "<a id='logout' href='../php/logout.php'>Sair da conta</a>";
       ?>
@@ -57,19 +58,20 @@ require '../php/trabalho.php';
 
   <br><br>
 
+  <!-- Aqui é onde a box será exibida -->
   <div id="box-container">
     <?php
-    // Verifica se há caixas aceitas para exibir
-    if ($caixas_aceitas) {
-      foreach ($caixas_aceitas as $caixa) {
+    // Verifica se há caixas para exibir
+    if ($caixas) {
+      foreach ($caixas as $caixa) {
         echo "<div class='box'>";
-        echo "<h3> {$caixa['titulo']}</h3>";
-        echo "<p> {$caixa['texto']}</p>";
-        echo "<form action='trabalho.php' method='post'>";
-        echo "<input type='hidden' name='trabalho_id' value='{$caixa['id']}'>";
+        echo "<h3 id='titulo_box'> {$caixa['titulo']}</h3>";
+        echo "<p>{$caixa['texto']}</p>";
+        // Adicionei botões para aceitar ou rejeitar a entrega
+        echo "<form action='home.php' method='post'>";
+        echo "<input type='hidden' name='box_id' value='{$caixa['id']}'>";
         echo "<div class='buttons'>";
-
-        echo "<button type='submit' name='action' value='concluir' id='accept'>";
+        echo "<button type='submit' name='action' value='aceitar' id='accept'>";
         echo "  <div class='svg-wrapper-1'>";
         echo "    <div class='svg-wrapper'>";
         echo "      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'>";
@@ -78,27 +80,28 @@ require '../php/trabalho.php';
         echo "      </svg>";
         echo "    </div>";
         echo "  </div>";
-        echo "  <span>Concluir</span>";
+        echo "  <span>Aceitar</span>";
         echo "</button>";
 
-        echo "<button type='submit' name='action' value='rejeitar' id='reject'>";
-        echo "  <span class='text'>Rejeitar</span>";
-        echo "  <span class='icon'>";
-        echo "    <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'>";
-        echo "      <path d='M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z'></path>";
-        echo "    </svg>";
-        echo "  </span>";
-        echo "</button>";
         echo "</div>";
         echo "</form>";
         echo "</div>";
         echo "<br>";
       }
     }
-
     ?>
   </div>
 
+  <?php
+  // Verifique se a caixa foi aceita e exiba uma mensagem se necessário
+  if (isset($_SESSION['caixa_aceita']) && $_SESSION['caixa_aceita'] === true) {
+    // Exiba o alerta após aceitar a caixa
+    echo "<script>Swal.fire({ title: 'Chamado aceito!', text: 'Por favor verificar chamado e faze-lo!', icon: 'success' });</script>";
+
+    // Limpe a variável de sessão após exibir a mensagem
+    unset($_SESSION['caixa_aceita']);
+  }
+  ?>
 </body>
 
 </html>
