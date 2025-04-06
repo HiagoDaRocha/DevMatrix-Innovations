@@ -32,12 +32,12 @@ require '../php/servico.php';
       <a href="login.php" id="login">
         <?php if ($imagens == 'login-de-usuario.png') : ?>
           <?php
-          $caminhoCompleto = getenv('ROUTE_DEFAULT_IMAGE') . $imagens;
+           $caminhoCompleto = '/assets/images/' . $imagens;
           ?>
           <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
         <?php else : ?>
           <?php
-          $caminhoCompleto = getenv('ROUTE_UPLOAD_IMAGE') . $imagens;
+          $caminhoCompleto = '/uploadsImages/' . $imagens;
           ?>
           <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
         <?php endif; ?> Login</a>

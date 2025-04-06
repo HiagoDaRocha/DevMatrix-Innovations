@@ -49,13 +49,16 @@ if (isset($_SESSION['usuario']) && isset($_SESSION['usuario']['nome'])) {
 
 // Verifica se o formulário foi submetido e se há uma imagem enviada
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES['fileImage'])) {
-    // Dados do arquivo
-    $file_name = $_FILES['fileImage']['name'];
-    $file_tmp = $_FILES['fileImage']['tmp_name'];
-    $savePath = $file_name; // Caminho onde a imagem será salva
+        // Caminho absoluto da pasta 'uploadsImages'
+        $uploadDir = realpath(__DIR__ . '/../uploadsImages/') . '/'; 
+        $fileName = basename($_FILES['fileImage']['name']);
+        $uploadFile = $uploadDir . $fileName;
+
+        // Caminho relativo salvo no banco de dados para ser usado no navegador
+        $savePath = '/uploadsImages/' . $fileName;
 
     // Move a imagem para o diretório desejado
-    if (move_uploaded_file($file_tmp, getenv('ROUTE_UPLOAD_IMAGE') . $savePath)) {
+    if (move_uploaded_file($_FILES['fileImage']['tmp_name'], $uploadFile)) {
 
         // Atualiza o registro do usuário no banco de dados com o caminho da imagem
         $sql = $pdo->prepare("UPDATE usuarios SET imagens = ? WHERE id = ?");
