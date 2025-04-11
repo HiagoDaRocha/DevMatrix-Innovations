@@ -12,7 +12,7 @@ services:
     volumes:
       - ./www:/var/www/html
       - ./uploads:/var/www/html/uploads
-      - ./uploadsImages:/var/ww/html/uploadsImages
+      - ./uploadsImages:/var/www/html/uploadsImages
     ports:
       - "${APACHE_PORT}:80"
     depends_on:
