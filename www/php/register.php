@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $birthday = $_POST['birthday']; // Não é necessário filtrar, pois é do tipo 'date'
     // Arquivo
     $file = $_FILES['file']; // Dados do arquivo
-    $file_name = $file['name']; // Nome do arquivo
+    $file_name = basename($file['name']); // Garante que só o nome do arquivo seja usado (evita caminhos maliciosos)
 
     $avatar = 'login-de-usuario.png';
 
@@ -64,8 +64,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Define a variável de sessão com os dados do novo usuário
             $_SESSION['usuario'] = ['nome' => $nome, 'login' => $login];
 
+            $uploadDir = realpath(__DIR__ . '/../uploads/');
+            $uploadPath = $uploadDir . '/' . $file_name;
             // Move o arquivo para o diretório desejado
-            move_uploaded_file($file['tmp_name'], 'C:/xampp/htdocs/DevMatrix-Innovations/uploads/' . $file_name);
+            move_uploaded_file($file['tmp_name'], $uploadPath);
 
 
 

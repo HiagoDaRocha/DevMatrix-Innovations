@@ -34,12 +34,12 @@ require '../php/login.php';
             <a class="active" href="login.php">
                 <?php if ($imagens == 'login-de-usuario.png') : ?>
                     <?php
-                    $caminhoCompleto = '/DevMatrix-Innovations/public/assets/images/' . $imagens;
+                      $caminhoCompleto = '/assets/images/' . $imagens;
                     ?>
                     <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
                 <?php else : ?>
                     <?php
-                    $caminhoCompleto = '/DevMatrix-Innovations/uploadsImages/' . $imagens;
+                             $caminhoCompleto = '/uploadsImages/' . $imagens;
                     ?>
                     <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
                 <?php endif; ?> Login</a>
@@ -66,12 +66,12 @@ require '../php/login.php';
                 <div class="imageContainer">
                     <?php if ($imagens == 'login-de-usuario.png') : ?>
                         <?php
-                        $caminhoCompleto = '/DevMatrix-Innovations/public/assets/images/' . $imagens;
+                       $caminhoCompleto = '/assets/images/' . $imagens;
                         ?>
                         <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto">
                     <?php else : ?>
                         <?php
-                        $caminhoCompleto = '/DevMatrix-Innovations/uploadsImages/' . $imagens;
+                        $caminhoCompleto = '/uploadsImages/' . $imagens;
                         ?>
                         <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto">
                     <?php endif; ?>

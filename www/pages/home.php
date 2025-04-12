@@ -34,12 +34,12 @@ require '../php/home.php';
       <a id="login" href="login.php">
         <?php if ($imagens == 'login-de-usuario.png') : ?>
           <?php
-          $caminhoCompleto = '/DevMatrix-Innovations/public/assets/images/' . $imagens;
+          $caminhoCompleto = '/assets/images/' . $imagens;
           ?>
           <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
         <?php else : ?>
           <?php
-          $caminhoCompleto = '/DevMatrix-Innovations/uploadsImages/' . $imagens;
+          $caminhoCompleto = '/uploadsImages/' . $imagens;
           ?>
           <img src="<?php echo htmlspecialchars($caminhoCompleto); ?>" id="imgPhoto2">
         <?php endif; ?> Login</a>

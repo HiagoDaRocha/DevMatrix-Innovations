@@ -1,34 +1,77 @@
-# TCC Técnico
+# 💻 DevMatrix Innovations
 
-Este é o repositório do projeto TCC Técnico. Aqui estão os passos para começar a usar o site:
+**DevMatrix Innovations** é uma empresa fictícia criada como parte do Trabalho de Conclusão de Curso Técnico em Informática para Internet.  
+O projeto consiste no desenvolvimento de uma **plataforma web profissional** que conecta empresas que precisam de serviços de tecnologia da informação a profissionais qualificados — como desenvolvedores, analistas de dados, técnicos em hardware, entre outros.
 
-## Passo 1: Clonar o repositório
+Diferente de redes sociais como o LinkedIn, a DevMatrix tem um foco direto e funcional: **conectar empresas a profissionais de TI sob demanda**, por meio de uma **contratação terceirizada supervisionada por um administrador interno**.
 
-Primeiro, você precisa clonar o repositório do GitHub. Você pode fazer isso usando o seguinte comando no terminal:
+---
 
+## 🎯 Objetivo do Sistema
 
+Criar uma plataforma **interativa** e **responsiva** que possibilite:
+
+- 🏢 Empresas (grandes ou pequenas, como McDonald's, brechós e lanchonetes) solicitarem serviços de TI.
+- 👨‍💻 Alocação de profissionais adequados pela DevMatrix para atender as demandas.
+- 🧪 Profissionais passarem por testes técnicos antes de integrar a equipe.
+- 🧑‍💼 Um administrador interno cadastrar atividades, atribuir tarefas e gerenciar usuários.
+
+---
+
+## 🚀 Funcionalidades Principais
+
+- ✅ Interface responsiva (funciona em celulares e desktops)
+- ✅ Cadastro e login de empresas e profissionais
+- ✅ Sistema de candidatura e testes práticos
+- ✅ Gerenciamento de tarefas e atividades
+- ✅ Atribuição de demandas por um administrador
+- ✅ Níveis de acesso distintos:
+
+  - **Administrador (Nível 1):** Gerencia usuários, tarefas e o sistema.
+  - **Usuário comum (Nível 0):** Se candidata a vagas e realiza tarefas atribuídas.
+
+---
+
+## 🛠️ Começando o Projeto
+
+### 📥 1. Clonar o repositório
+
+```bash
 git clone https://github.com/HiagoDaRocha/DevMatrix-Innovations.git
+```
+
+### ⚙️ 2. Configurar variáveis de ambiente
+
+Crie um arquivo `.env` com base no `.env.example`, preenchendo com os valores adequados (como credenciais, portas e chaves necessárias).
 
 
+### 🧹 3. Remover arquivos temporários
 
-## Passo 2: Iniciar o servidor
+Exclua os arquivos `apagar.txt` nas seguintes pastas:
 
-Agora, você precisa abrir a pasta XAMPP e dentro dela procurar htdocs e colocar o projeto dentro do htdocs e
-depois abra o xampp e clique no start nas opções APACHE e MySQL.
+- `uploads/`
+- `uploadsImages/`
 
-
-
-## Passo 3: importar sql
-
-Clique em admin do MySQL do XAMPP e crie um banco de dados com o nome "tccTecnico" e depois clique e procure a opção
-"Importar", clique nela e pegue o arquivo "tcc_tecnico.sql" e importe ele.
+> Esses arquivos existem apenas para garantir que as pastas vazias sejam enviadas ao Git.
 
 
+### 🐳 4. Iniciar o Docker do projeto
 
-## Passo 4: Abrir o site
+Iniciar o projeto com: 
 
-Para iniciar o site, você precisa abrir o arquivo `index.php`. Você pode fazer isso diretamente no seu navegador digitando o caminho do arquivo na barra de endereços(http://localhost/DevMatrix-Innovations/public/index.php).
+```bash
+docker-compose up -d --build
+```
 
-Pronto! Agora você deve ser capaz de ver e interagir com o site.
+### ⏹️▶️ 5. Parar e iniciar o Docker
 
-Se você encontrar algum problema, sinta-se à vontade para abrir uma issue no GitHub ou entrar em contato com o desenvolvedor.
+Para parar o ambiente:
+
+```bash
+docker compose stop
+```
+Para iniciar novamente:
+
+```bash
+docker compose start
+```

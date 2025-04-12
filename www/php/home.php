@@ -1,6 +1,26 @@
 <?php
 session_start(); // Inicia a sessão
 
+// Define o tempo máximo de inatividade (em segundos)
+$tempoMaximoInatividade = 1800; // 30 minutos
+
+// Verifica se o timestamp do último acesso está definido
+if (isset($_SESSION['ultimo_acesso'])) {
+    // Calcula o tempo de inatividade
+    $tempoInativo = time() - $_SESSION['ultimo_acesso'];
+
+    // Se o tempo de inatividade exceder o limite, encerra a sessão
+    if ($tempoInativo > $tempoMaximoInatividade) {
+        session_unset(); // Remove todas as variáveis de sessão
+        session_destroy(); // Destroi a sessão
+        header("Location: ../index.php"); // Redireciona para a página de login
+        exit;
+    }
+}
+
+// Atualiza o timestamp do último acesso
+$_SESSION['ultimo_acesso'] = time();
+
 //Verifica se a sessão está vazia
 if (empty($_SESSION['usuario'])) {
   header("Location:../index.php");
@@ -45,7 +65,7 @@ $caixas = $stmt->fetchAll();
 
 // Processamento dos dados do formulário
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action'])) {
-  $box_id = $_POST['box_id'];
+  $box_id = filter_input(INPUT_POST, 'box_id', FILTER_SANITIZE_NUMBER_INT);
   $action = $_POST['action'];
 
   if ($action == 'aceitar') {
