@@ -44,8 +44,11 @@ git clone https://github.com/HiagoDaRocha/DevMatrix-Innovations.git
 
 Crie um arquivo `.env` com base no `.env.example`, preenchendo com os valores adequados (como credenciais, portas e chaves necessárias).
 
+### 🛢️ 3. Configurar SQL
 
-### 🧹 3. Remover arquivos temporários
+Crie um arquivo `init.sql` dentro da pasta `mysql-init` com base no `init.examble.sql`, preenchendo com os valores adequados.
+
+### 🧹 4. Remover arquivos temporários
 
 Exclua os arquivos `apagar.txt` nas seguintes pastas:
 
@@ -55,7 +58,7 @@ Exclua os arquivos `apagar.txt` nas seguintes pastas:
 > Esses arquivos existem apenas para garantir que as pastas vazias sejam enviadas ao Git.
 
 
-### 🐳 4. Iniciar o Docker do projeto
+### 🐳 5. Iniciar o Docker do projeto
 
 Iniciar o projeto com: 
 
@@ -63,7 +66,7 @@ Iniciar o projeto com:
 docker-compose up -d --build
 ```
 
-### ⏹️▶️ 5. Parar e iniciar o Docker
+### ⏹️▶️ 6. Parar e iniciar o Docker
 
 Para parar o ambiente:
 
