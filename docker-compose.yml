@@ -9,8 +9,6 @@ services:
     user: "1000:1000" # Usa o mesmo UID e GID do seu usuário local
     volumes:
       - ./www:/var/www/html
-      - ./uploads:/var/www/html/uploads
-      - ./uploadsImages:/var/www/html/uploadsImages
     ports:
       - "${APACHE_PORT}:80"
     depends_on:
